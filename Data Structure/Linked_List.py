@@ -65,6 +65,14 @@ class LinkedList:
         if self.head is not None:
             self.head = self.head.next
 
+    def del_end_node(self):
+        if self.head is None:
+            return
+        node = self.head
+        while node.next.next is not None:
+            node = node.next
+        node.next = None
+
     def print_list(self):
         current_node = self.head
         while current_node is not None:
@@ -82,4 +90,5 @@ linkedlist.add_begin_node(1)
 linkedlist.add_begin_node(0)
 linkedlist.add_after_node(4, 3)
 linkedlist.add_before_node(5, 6)
+linkedlist.del_end_node()
 print(linkedlist.print_list())
