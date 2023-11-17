@@ -73,6 +73,19 @@ class LinkedList:
             node = node.next
         node.next = None
 
+    def del_node(self, x):
+        if self.head is None:
+            return
+        if self.head.data == x:
+            self.head = self.head.next
+            return
+        node = self.head
+        while node is not None:
+            if node.next.data == x:
+                break
+            node = node.next
+        node.next = node.next.next
+
     def print_list(self):
         current_node = self.head
         while current_node is not None:
@@ -87,8 +100,9 @@ linkedlist.append(3)
 linkedlist.del_begin_node()
 linkedlist.append(6)
 linkedlist.add_begin_node(1)
-linkedlist.add_begin_node(0)
+linkedlist.add_begin_node(8)
 linkedlist.add_after_node(4, 3)
 linkedlist.add_before_node(5, 6)
 linkedlist.del_end_node()
+linkedlist.del_node(8)
 print(linkedlist.print_list())
