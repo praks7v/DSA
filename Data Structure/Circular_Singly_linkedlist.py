@@ -66,7 +66,7 @@ class CircularSinglyLinkedList:
                 if after_x == current_node.data:
                     break
             if after_x != current_node.data:
-                print('Given node not found')
+                print("Value", after_x, "not found in the list. Cannot append.")
             else:
                 new_node.next = current_node.next
                 current_node.next = new_node
@@ -116,7 +116,7 @@ class CircularSinglyLinkedList:
             if current_node.next.data == del_x:
                 current_node.next = current_node.next.next
             else:
-                print("Given node is not found!")
+                print("Value", del_x, "not found in the list. Cannot DELETE.")
 
     def display(self):
         """
@@ -128,6 +128,34 @@ class CircularSinglyLinkedList:
             current_node = self.start_node
             while True:
                 print(current_node.data, end=" -> ")
+                current_node = current_node.next
+                if current_node == self.start_node:
+                    break
+
+    def display_updated(self, start_point=None):
+        """
+        Display the circular linked list with an updated starting point.
+
+        Parameters:
+        - start_point: The value to set as the new starting point. If None, the original starting point is used.
+        """
+        if self.is_empty():
+            print("Circular Linked List is Empty!")
+        else:
+
+            if start_point is not None:
+                current_node = self.start_node
+                while True:
+                    if current_node.data == start_point:
+                        self.start_node = current_node
+                        break
+                    current_node = current_node.next
+                    if current_node == self.start_node:
+                        break
+
+            current_node = self.start_node
+            while True:
+                print(current_node.data, end=' -> ')
                 current_node = current_node.next
                 if current_node == self.start_node:
                     break
@@ -145,3 +173,9 @@ if __name__ == "__main__":
     csll.delete_by_value(30)
     csll.append_after(30, 20)
     csll.display()
+    print()
+    csll.display_updated(start_point=20)
+    print()
+    csll.append(130)
+    csll.append(230)
+    csll.display_updated(start_point=20)
