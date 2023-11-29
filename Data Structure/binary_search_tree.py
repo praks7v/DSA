@@ -121,14 +121,20 @@ class BinarySearchTree:
                 return self.right
             if self.right is None:
                 return self.left
-
+            """
+            Updates the current node by replacing its data with the maximum value
+            from its left subtree, and then recursively deletes the node with the
+            updated value from the left subtree.
+    
+            This logic is applied when the node to be deleted has both left and right subtrees.
+            """
             max_val = self.left.find_max_val()
             self.data = max_val
             self.left = self.left.delete(max_val)
 
+            # Same as using Minimum value
             # min_val = self.right.find_min_val()
             # self.data = min_val
-            #
             # self.right = self.right.delete(min_val)
 
         return self
