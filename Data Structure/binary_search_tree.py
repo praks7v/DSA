@@ -186,15 +186,6 @@ class BinarySearchTree:
         print(self.data, end=" ")
 
 
-# Insertion Operation done
-# Search Operation done
-# Deletion Operation done
-
-# Traversal Operation done
-# In-Order Traversal
-# Pre-Order Traversal
-# Post-Order Traversal
-
 if __name__ == "__main__":
     # Sample Usage
     bst = BinarySearchTree(40)
@@ -220,3 +211,4 @@ if __name__ == "__main__":
     bst.pre_order_traversal()
     print("\nPost-order traversal:", end=" ")
     bst.post_order_traversal()
+    print()
