@@ -1,13 +1,13 @@
-class MinHeap:
+class MaxHeap:
     def __init__(self):
         """
-        Initializes an empty MinHeap.
+        Initializes an empty MaxHeap.
         """
         self.heap = []
 
     def insert(self, data):
         """
-        Inserts a new element into the MinHeap and maintains the heap property by performing _heapify_up.
+        Inserts a new element into the MaxHeap and maintains the heap property by performing _heapify_up.
 
         Parameters:
         - data: The element to be inserted.
@@ -23,7 +23,7 @@ class MinHeap:
         index = len(self.heap) - 1
         while index > 0:
             parent_index = (index - 1) // 2
-            if self.heap[index] < self.heap[parent_index]:
+            if self.heap[index] > self.heap[parent_index]:
                 self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]
                 index = parent_index
             else:
@@ -39,24 +39,24 @@ class MinHeap:
         while True:
             left_child_index = 2 * index + 1
             right_child_index = 2 * index + 2
-            smallest = index
+            highest = index
 
-            if left_child_index < len(self.heap) and self.heap[left_child_index] < self.heap[smallest]:
-                smallest = left_child_index
+            if left_child_index < len(self.heap) and self.heap[left_child_index] > self.heap[highest]:
+                highest = left_child_index
 
-            if right_child_index < len(self.heap) and self.heap[right_child_index] < self.heap[smallest]:
-                smallest = right_child_index
+            if right_child_index < len(self.heap) and self.heap[right_child_index] > self.heap[highest]:
+                highest = right_child_index
 
-            if smallest != index:
-                self.heap[index], self.heap[smallest] = self.heap[smallest], self.heap[index]
-                index = smallest
+            if highest != index:
+                self.heap[index], self.heap[highest] = self.heap[highest], self.heap[index]
+                index = highest
             else:
                 break
 
-    def extract_min(self):
+    def extract_max(self):
         """
-        Extracts the minimum element from the MinHeap and maintains the heap property by performing _heapify_down.
-        Returns the extracted minimum element.
+        Extracts the maximum element from the MaxHeap and maintains the heap property by performing _heapify_down.
+        Returns the extracted maximum element.
         """
         if not self.heap:
             return None
@@ -66,12 +66,9 @@ class MinHeap:
         root = self.heap[0]
 
         # Swap root with the last element and then remove the last element
-        self.heap[0] = self.heap.pop()
-
-        # Alternatively, you can use the commented-out code below to first swap, then remove
-        # last_element = len(self.heap) - 1
-        # self.heap[0], self.heap[last_element] = self.heap[last_element], self.heap[0]
-        # extracted_element = self.heap.pop()
+        last_index = len(self.heap) - 1
+        self.heap[0], self.heap[last_index] = self.heap[last_index], self.heap[0]
+        self.heap.pop()
 
         # Perform heapify-down to maintain the heap property
         self._heapify_down()
@@ -80,13 +77,18 @@ class MinHeap:
 
 
 if __name__ == "__main__":
-    min_heap = MinHeap()
-    list1 = [3, 5, 6, 7, 9, 8, 2]
-    for i in list1:
-        min_heap.insert(i)
+    max_heap = MaxHeap()
+    max_heap.insert(4)
+    max_heap.insert(5)
+    max_heap.insert(2)
+    max_heap.insert(7)
+    max_heap.insert(1)
+    max_heap.insert(9)
+    max_heap.insert(8)
+    max_heap.insert(3)
 
-    print("Min Heap: ", min_heap.heap)
+    print("Max Heap:", max_heap.heap)
 
-    extracted_min = min_heap.extract_min()
-    print("Extracted Minimum Element: ", extracted_min)
-    print("Updated Min Heap: ", min_heap.heap)
+    extracted_max = max_heap.extract_max()
+    print("Extracted Max Element:", extracted_max)
+    print("Updated Max Heap:", max_heap.heap)

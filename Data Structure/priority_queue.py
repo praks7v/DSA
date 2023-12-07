@@ -1,5 +1,11 @@
 class PriorityQueue:
     def __init__(self, capacity):
+        """
+        Initializes a Priority Queue with the given capacity.
+
+        Parameters:
+        - capacity: The maximum number of elements the queue can hold.
+        """
         self.capacity = capacity
         self.items = [None] * capacity
         self.rear = -1
@@ -7,6 +13,15 @@ class PriorityQueue:
         self.size = 0
 
     def enqueue(self, item):
+        """
+        Adds an item to the Priority Queue.
+
+        Parameters:
+        - item: The item to be added to the queue.
+
+        Returns:
+        - None if the queue is full; otherwise, adds the item to the queue.
+        """
         if self.size < self.capacity:
             self.rear = (self.rear + 1) % self.capacity
             self.items[self.rear] = item
@@ -16,7 +31,13 @@ class PriorityQueue:
             return None
 
     def _heapify_up(self, index):
-        # index = len(self.items) - 1
+        """
+        Restores the heap property by moving the recently added element (at the end of the heap)
+        upwards to its correct position.
+
+        Parameters:
+        - index: The index of the recently added element.
+        """
         while index > 0:
             parent_index = (index - 1) // 2
             if self.items[index] < self.items[parent_index]:
@@ -26,6 +47,12 @@ class PriorityQueue:
                 break
 
     def _heapify_down(self, index=0):
+        """
+        Restores the heap property by moving the element at the given index downwards to its correct position.
+
+        Parameters:
+        - index: The index from which to start the heapify-down process.
+        """
         while True:
             left_child_index = 2 * index + 1
             right_child_index = 2 * index + 2
@@ -42,6 +69,12 @@ class PriorityQueue:
                 break
 
     def extract_min(self):
+        """
+        Removes and returns the minimum element from the Priority Queue.
+
+        Returns:
+        - None if the queue is empty; otherwise, returns the extracted minimum element.
+        """
         if self.size == 0:
             return None
 
@@ -64,5 +97,4 @@ if __name__ == "__main__":
     pq.enqueue(9)
     pq.extract_min()
     while pq.size > 0:
-        print(pq.extract_min(), end=' ')
-    print()
+        print("Priority from lowest to highest value: ", pq.extract_min())
