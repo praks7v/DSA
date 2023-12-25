@@ -1,5 +1,6 @@
 import os
 
+
 def generate_file_links(root_dir, target_folder):
     file_links = []
     target_folder_path = os.path.join(root_dir, target_folder)
@@ -8,10 +9,16 @@ def generate_file_links(root_dir, target_folder):
         for file in files:
             file_path = os.path.join(root, file)
             relative_path = os.path.relpath(file_path, root_dir)
-            file_link = f'- [{file}]({relative_path.replace(os.path.sep, "/")})'
+            url_friendly_path = relative_path.replace(" ", "%20")
+
+            # Use the file name (without extension) as the link text
+            link_text = os.path.splitext(file)[0].replace("_", " ").title()
+
+            file_link = f"- [{link_text}]({url_friendly_path})"
             file_links.append(file_link)
 
     return file_links
+
 
 if __name__ == "__main__":
     root_directory = "."  # Change this to the root directory of your project
