@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-- [generate_links.py](generate_links.py)
 - [README.md](README.md)
 - [hash_table.py](Hash Table%20hash_table.py)
 - [graph_adjacency_matrix.py](Graph%20graph_adjacency_matrix.py)
@@ -28,7 +26,3 @@
 - [min_heap.py](Heap%20min_heap.py)
 - [max_heap.py](Heap%20max_heap.py)
 - [stack.py](Stack%20stack.py)
-=======
-# DSA
-[Binary Search](Data%20Structure/Binary%20Search/binary_search.py)
->>>>>>> origin/main
