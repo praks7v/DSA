@@ -1,2 +1,2 @@
 # DSA
-[Binary Search](Data Structure/Binary Search/binary_search.py)
+[Binary Search](Data%20Structure/Binary%20Search/binary_search.py)
