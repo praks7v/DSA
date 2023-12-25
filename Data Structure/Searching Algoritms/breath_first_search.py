@@ -57,4 +57,3 @@ if __name__ == "__main__":
 
     # Perform BFS traversal starting from node "A".
     g.bfs("A")
-    print()
